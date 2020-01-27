@@ -1,0 +1,20 @@
+const { app, globalShortcut } = require("electron");
+const createTray = require("./ui/createTray");
+const createAbout = require("./ui/createAbout");
+const createItem = require("./ui/createItem");
+const showItemInfo = require("./ui/showItemInfo");
+
+function onAppReady() {
+  console.log("onAppReady");
+  createTray();
+  createAbout();
+  createItem();
+  globalShortcut.register("Control+I", showItemInfo);
+}
+
+function onAppQuit() {
+  console.log("onAppQuit");
+}
+
+app.on("ready", onAppReady);
+app.on("quit", onAppQuit);

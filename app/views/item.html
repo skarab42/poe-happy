@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/default.css" />
+  </head>
+  <body>
+    <div id="titlebar">
+      <h1 id="title">?</h1>
+      <button id="close">x</button>
+    </div>
+    <div id="body">
+      <p id="text">?</p>
+    </div>
+    <script>
+      const { remote, ipcRenderer } = require("electron");
+
+      function setItem(name, value) {
+        document.getElementById(name).innerText = value;
+      }
+
+      ipcRenderer.on("item", (event, item) => {
+        setItem("title", item.name);
+        setItem("text", item.text);
+      });
+
+      const win = remote.getCurrentWindow();
+      const $close = document.getElementById("close");
+      $close.addEventListener("click", () => {
+        win.hide();
+      });
+    </script>
+  </body>
+</html>

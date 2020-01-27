@@ -1,0 +1,31 @@
+{
+  "name": "poe-happy",
+  "version": "0.1.0",
+  "description": "Path of Exile Happy Trade",
+  "main": "app/index.js",
+  "author": "Sébastien Mischler (skarab|Lautr3k)",
+  "license": "MIT",
+  "private": false,
+  "homepage": "https://github.com/lautr3k/poe-happy",
+  "bugs": {
+    "url": "https://github.com/lautr3k/poe-happy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lautr3k/poe-happy.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --ia32",
+    "pack": "yarn dist --dir"
+  },
+  "build": {
+    "productName": "PoE Happy",
+    "icon": "app/images/icon.ico",
+    "appId": "com.github.lautr3k.poe-happy"
+  },
+  "devDependencies": {
+    "electron": "^7.1.9",
+    "electron-builder": "^22.2.0"
+  }
+}

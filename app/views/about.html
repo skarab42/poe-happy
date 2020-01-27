@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/default.css" />
+  </head>
+  <body>
+    <div id="titlebar">
+      <h1 id="title">?</h1>
+      <button id="close">x</button>
+    </div>
+    <div id="body">
+      <p>Version: <span id="version">?</span></p>
+      <p>License: <span id="license">?</span></p>
+      <p>Author: <span id="author">?</span></p>
+      <p>Homepage: <span id="homepage">?</span></p>
+    </div>
+    <script>
+      const { remote } = require("electron");
+      const { app } = require("../state");
+
+      function setItem(name, value) {
+        document.getElementById(name).innerText = value;
+      }
+
+      setItem("title", `About ${app.name}`);
+      setItem("version", app.version);
+      setItem("author", app.author);
+      setItem("homepage", app.homepage);
+      setItem("license", app.license);
+
+      const win = remote.getCurrentWindow();
+      const $close = document.getElementById("close");
+      $close.addEventListener("click", () => {
+        win.hide();
+      });
+    </script>
+  </body>
+</html>
