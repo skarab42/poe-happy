@@ -7,8 +7,6 @@ function createTray() {
   state.ui.trayMenu = Menu.buildFromTemplate([
     { label: state.app.title, enabled: false },
     { type: "separator" },
-    { role: "viewMenu", visible: state.debug },
-    { type: "separator", visible: state.debug },
     {
       label: "About",
       click() {
