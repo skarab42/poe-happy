@@ -11,31 +11,34 @@
   </head>
   <body>
     <div id="titlebar">
-      <h1 id="title">?</h1>
+      <h1 id="title"></h1>
       <button id="close">x</button>
     </div>
-    <div id="body">
-      <p>Version: <span id="version">?</span></p>
-      <p>License: <span id="license">?</span></p>
-      <p>Author: <span id="author">?</span></p>
-      <p>Homepage: <span id="homepage">?</span></p>
-    </div>
+    <div id="body"></div>
     <script>
-      const { remote } = require("electron");
-      const { app } = require("../state");
-
-      function setItem(name, value) {
-        document.getElementById(name).innerText = value;
-      }
-
-      setItem("title", `About ${app.name}`);
-      setItem("version", app.version);
-      setItem("author", app.author);
-      setItem("homepage", app.homepage);
-      setItem("license", app.license);
+      const { shell, remote, ipcRenderer } = require("electron");
 
       const win = remote.getCurrentWindow();
+      const $title = document.getElementById("title");
+      const $body = document.getElementById("body");
       const $close = document.getElementById("close");
+
+      ipcRenderer.on("title", (event, title) => {
+        $title.innerText = title;
+      });
+
+      ipcRenderer.on("items", (event, items) => {
+        $body.innerText = "";
+        items.forEach(item => {
+          const $p = document.createElement("p");
+          // if (item.link) {
+          //   item.value = `<a href="${item.value}">${item.value}</a>`;
+          // }
+          $p.innerHTML = `${item.label}: ${item.value}`;
+          $body.appendChild($p);
+        });
+      });
+
       $close.addEventListener("click", () => {
         win.hide();
       });

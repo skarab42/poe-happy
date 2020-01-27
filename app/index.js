@@ -4,9 +4,11 @@ const createTray = require("./ui/createTray");
 const createAbout = require("./ui/createAbout");
 const createItem = require("./ui/createItem");
 const registerShortcuts = require("./js/registerShortcuts");
+const i18n = require("./i18n");
 
 function onAppReady() {
-  getGameLanguage();
+  const language = getGameLanguage();
+  i18n.setLocale(language);
   createTray();
   createAbout();
   createItem();
