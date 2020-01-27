@@ -11,6 +11,7 @@ const state = {
     license,
     title: `${name} v${version}`
   },
+  language: "en",
   paths: {
     root: __dirname,
     views: path.join(__dirname, "views"),
