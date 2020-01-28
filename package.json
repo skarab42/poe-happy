@@ -29,6 +29,7 @@
     "electron-builder": "^22.2.0"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "i18n": "^0.8.5"
   }
 }

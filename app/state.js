@@ -12,6 +12,8 @@ const state = {
     title: `${name} v${version}`
   },
   language: "en",
+  league: null,
+  leagues: null,
   paths: {
     root: __dirname,
     views: path.join(__dirname, "views"),
