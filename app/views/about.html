@@ -31,10 +31,18 @@
         $body.innerText = "";
         items.forEach(item => {
           const $p = document.createElement("p");
-          // if (item.link) {
-          //   item.value = `<a href="${item.value}">${item.value}</a>`;
-          // }
-          $p.innerHTML = `${item.label}: ${item.value}`;
+          $p.innerHTML = `${item.label}: `;
+          if (item.link) {
+            const $a = document.createElement("a");
+            $a.addEventListener("click", event => {
+              event.preventDefault();
+              shell.openExternal(item.value);
+            });
+            $a.innerHTML += item.value;
+            $p.appendChild($a);
+          } else {
+            $p.innerHTML += item.value;
+          }
           $body.appendChild($p);
         });
       });
