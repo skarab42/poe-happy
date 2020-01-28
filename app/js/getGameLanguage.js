@@ -1,5 +1,6 @@
 const { app, dialog } = require("electron");
 const state = require("../state");
+const i18n = require("../i18n");
 const path = require("path");
 const fs = require("fs");
 
@@ -42,6 +43,7 @@ function getGameLanguage() {
   }
 
   state.language = language;
+  i18n.setLocale(language);
 
   return language;
 }
