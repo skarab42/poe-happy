@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/default.css" />
+  </head>
+  <body>
+    <div id="titlebar">
+      <h1 id="title">?</h1>
+      <button id="close">x</button>
+    </div>
+    <div id="body">
+      <p><span id="current">Current</span>: <span id="league"></span></p>
+      <div id="leagues"></div>
+    </div>
+    <script>
+      const { remote, ipcRenderer } = require("electron");
+
+      const i18n = remote.require("./i18n");
+      const win = remote.getCurrentWindow();
+      const $close = document.getElementById("close");
+      const $leagues = document.getElementById("leagues");
+
+      function setItem(name, value) {
+        document.getElementById(name).innerText = value;
+      }
+
+      ipcRenderer.on("title", (event, title) => {
+        setItem("title", title);
+      });
+
+      ipcRenderer.on("league", (event, league) => {
+        setItem("current", i18n.__("Current"));
+        setItem("league", league);
+      });
+
+      ipcRenderer.on("leagues", (event, leagues) => {
+        setItem("leagues", "");
+        leagues.forEach(league => {
+          const $div = document.createElement("div");
+          const $label = document.createElement("label");
+          const $input = document.createElement("input");
+          $label.setAttribute("for", league.id);
+          $label.innerText = league.text;
+          $input.setAttribute("id", league.id);
+          $input.setAttribute("name", "leagues");
+          $input.setAttribute("type", "radio");
+          $div.appendChild($input);
+          $div.appendChild($label);
+          $leagues.appendChild($div);
+        });
+      });
+
+      $close.addEventListener("click", () => {
+        win.hide();
+      });
+    </script>
+  </body>
+</html>
