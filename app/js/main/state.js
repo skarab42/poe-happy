@@ -5,6 +5,7 @@ const {
   author,
   homepage
 } = require("../../../package.json");
+
 const path = require("path");
 
 const appPath = path.resolve(__dirname, "../..");
@@ -22,6 +23,7 @@ const state = {
     license,
     author,
     homepage,
+    language: "en",
     title: `${name} v${version}`
   }
 };

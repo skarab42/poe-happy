@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Fontin Bold";
+  src: url("../fonts/Fontin-Bold.otf");
+}
+
+@font-face {
+  font-family: "Fontin Italic";
+  src: url("../fonts/Fontin-Italic.otf");
+}
+
+@font-face {
+  font-family: "Fontin Regular";
+  src: url("../fonts/Fontin-Regular.otf");
+}
+
+@font-face {
+  font-family: "Fontin SmallCaps";
+  src: url("../fonts/Fontin-SmallCaps.otf");
+}
