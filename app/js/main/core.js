@@ -14,8 +14,18 @@ class Core {
     this.i18n.setLocale(language);
   }
 
-  init() {
+  async updateLeagues() {
+    const getLeagues = require("./poe/getLeagues");
+    const leagues = await getLeagues();
+    this.state.leagues = leagues;
+    if (!this.state.league) {
+      this.state.league = this.state.leagues[0].id;
+    }
+  }
+
+  async init() {
     this.updateLanguage();
+    await this.updateLeagues();
     this.ui = require("./ui");
   }
 

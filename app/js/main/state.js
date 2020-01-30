@@ -25,7 +25,9 @@ const state = {
     homepage,
     language: "en",
     title: `${name} v${version}`
-  }
+  },
+  leagues: [],
+  league: null
 };
 
 module.exports = state;

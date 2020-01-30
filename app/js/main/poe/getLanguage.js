@@ -2,13 +2,10 @@ const { app, dialog } = require("electron");
 const path = require("path");
 const fs = require("fs");
 
+const error = require("../error");
+
 const docsPath = app.getPath("documents");
 const gamePath = path.join(docsPath, "My Games", "Path of Exile");
-
-function error(message) {
-  dialog.showErrorBox("Oups !", message);
-  app.quit();
-}
 
 function _getLanguage(file) {
   try {

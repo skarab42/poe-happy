@@ -9,6 +9,33 @@ p {
   line-height: 1.5;
 }
 
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+input[type="radio"] ~ label {
+  cursor: pointer;
+}
+
+input[type="radio"]:checked ~ label {
+  color: #c4711b;
+}
+
+.flex {
+  display: flex;
+}
+
+.my-1 {
+  margin: 8px 0;
+}
+
+.my-2 {
+  margin: 16px 0;
+}
+
 #titlebar {
   top: 0;
   width: 100%;
