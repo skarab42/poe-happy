@@ -27,7 +27,7 @@ class Core {
   }
 
   showItemInfo() {
-    this.ui.item.showInactive();
+    require("./ui/showItem")();
   }
 
   registerShortcuts() {
