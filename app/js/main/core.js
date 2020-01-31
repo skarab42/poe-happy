@@ -1,26 +1,27 @@
-const state = require("./state");
+const store = require("./store");
 const i18n = require("./i18n");
 
 class Core {
   constructor() {
-    this.state = state;
+    this.store = store;
     this.i18n = i18n;
     this.ui = {};
   }
 
   updateLanguage() {
     const language = require("./poe/getLanguage")();
-    this.state.app.language = language;
+    this.store.set("language", language);
     this.i18n.setLocale(language);
   }
 
   async updateLeagues() {
     const getLeagues = require("./poe/getLeagues");
     const leagues = await getLeagues();
-    this.state.leagues = leagues;
-    if (!this.state.league) {
-      this.state.league = this.state.leagues[0].id;
+    this.store.set("leagues", leagues);
+    if (!this.store.has("league")) {
+      this.store.set("league", leagues[0].id);
     }
+    // TODO: check if the league is out-of-date
   }
 
   async init() {

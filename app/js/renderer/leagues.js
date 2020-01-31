@@ -1,22 +1,25 @@
-setTitle(core.i18n.__("Leagues"));
+setTitle(i18n.__("Leagues"));
 
 const $leagues = createElement("div");
 
-core.state.leagues.forEach(league => {
+const league = store.get("league");
+const leagues = store.get("leagues");
+
+leagues.forEach(item => {
   const $div = createElement("div");
   const $label = createElement("label");
   const $input = createElement("input");
 
   $div.setAttribute("class", "flex my-1");
 
-  $label.setAttribute("for", league.id);
-  $label.innerText = league.text;
+  $label.setAttribute("for", item.id);
+  $label.innerText = item.text;
 
-  if (core.state.league === league.id) {
+  if (league === item.id) {
     $input.setAttribute("checked", "checked");
   }
 
-  $input.setAttribute("id", league.id);
+  $input.setAttribute("id", item.id);
   $input.setAttribute("name", "leagues");
   $input.setAttribute("type", "radio");
 

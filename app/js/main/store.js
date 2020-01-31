@@ -1,3 +1,5 @@
+const Store = require("./libs/store");
+
 const {
   name,
   version,
@@ -7,10 +9,9 @@ const {
 } = require("../../../package.json");
 
 const path = require("path");
-
 const appPath = path.resolve(__dirname, "../..");
 
-const state = {
+const store = new Store({
   paths: {
     app: appPath,
     views: path.join(appPath, "views"),
@@ -28,6 +29,6 @@ const state = {
   },
   leagues: [],
   league: null
-};
+});
 
-module.exports = state;
+module.exports = store;

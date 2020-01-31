@@ -1,6 +1,6 @@
 const i18n = require("i18n");
-const { paths } = require("./state");
+const store = require("./store");
 
-i18n.configure({ directory: paths.locales });
+i18n.configure({ directory: store.get("paths").locales });
 
 module.exports = i18n;

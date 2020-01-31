@@ -3,6 +3,9 @@ const core = remote.require("./core");
 const win = remote.getCurrentWindow();
 const elements = getAllElementById();
 
+const store = core.store;
+const i18n = core.i18n;
+
 function getAllElementById() {
   const refs = {};
 

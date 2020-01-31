@@ -1,10 +1,12 @@
-setTitle(core.i18n.__("About"));
+setTitle(i18n.__("About"));
+
+const app = store.get("app");
 
 const items = [
-  { label: core.i18n.__("Version"), value: core.state.app.version },
-  { label: core.i18n.__("License"), value: core.state.app.license },
-  { label: core.i18n.__("Author"), value: core.state.app.author },
-  { label: core.i18n.__("Source"), value: core.state.app.homepage, link: true }
+  { label: i18n.__("Version"), value: app.version },
+  { label: i18n.__("License"), value: app.license },
+  { label: i18n.__("Author"), value: app.author },
+  { label: i18n.__("Source"), value: app.homepage, link: true }
 ];
 
 items.forEach(item => {

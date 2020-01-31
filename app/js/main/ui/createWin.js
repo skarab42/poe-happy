@@ -1,8 +1,9 @@
 const { BrowserWindow } = require("electron");
-const { paths } = require("../state");
+const store = require("../store");
 const path = require("path");
 
 function createWin(name, options = {}) {
+  const paths = store.get("paths");
   const win = new BrowserWindow({
     width: 442,
     height: 200,

@@ -1,9 +1,11 @@
 const { Tray, Menu } = require("electron");
-const { app, paths } = require("../state");
+const store = require("../store");
 const i18n = require("../i18n");
 const path = require("path");
 
 function createTray() {
+  const app = store.get("app");
+  const paths = store.get("paths");
   const tray = new Tray(path.join(paths.images, "icon.ico"));
   const menu = Menu.buildFromTemplate([
     { label: app.title, enabled: false },
