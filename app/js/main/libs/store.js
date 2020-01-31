@@ -47,7 +47,6 @@ class Store {
       const stateFile = this.getFilePath();
       const json = JSON.stringify(this.state, null, "  ");
       fs.writeFileSync(stateFile, json);
-      console.log("store.save:", stateFile, json);
     } catch (error) {
       console.log("store.save.error", error);
     }
@@ -57,10 +56,9 @@ class Store {
     try {
       const stateFile = this.getFilePath();
       const json = fs.readFileSync(stateFile, "utf8");
-      console.log("store.load:", stateFile, json);
       this.state = JSON.parse(json);
-    } catch (error) {
-      // console.log("store.load.error", error);
+    } catch (e) {
+      // skip error
     }
   }
 }

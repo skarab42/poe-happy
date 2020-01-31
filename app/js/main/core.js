@@ -34,7 +34,6 @@ class Core {
 
   quit() {
     this.store.save();
-    console.log("Core: quit");
   }
 }
 
