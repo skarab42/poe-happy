@@ -18,19 +18,22 @@ class Core {
     const getLeagues = require("./poe/getLeagues");
     const leagues = await getLeagues();
     this.store.set("leagues", leagues);
-    if (!this.store.has("league")) {
-      this.store.set("league", leagues[0].id);
+    const firstLeague = leagues[0].id;
+    const league = this.store.get("league");
+    if (league === null || !leagues.find(l => l.id === league.id)) {
+      this.store.set("league", firstLeague);
     }
-    // TODO: check if the league is out-of-date
   }
 
   async init() {
+    this.store.load();
     this.updateLanguage();
     await this.updateLeagues();
     this.ui = require("./ui");
   }
 
   quit() {
+    this.store.save();
     console.log("Core: quit");
   }
 }

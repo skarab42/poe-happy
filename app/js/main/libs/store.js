@@ -1,3 +1,7 @@
+const { app } = require("electron");
+const path = require("path");
+const fs = require("fs");
+
 let state = null;
 
 class Store {
@@ -32,6 +36,32 @@ class Store {
 
   delete(key) {
     delete this.state[key];
+  }
+
+  getFilePath() {
+    return path.join(app.getPath("userData"), "state.json");
+  }
+
+  save() {
+    try {
+      const stateFile = this.getFilePath();
+      const json = JSON.stringify(this.state, null, "  ");
+      fs.writeFileSync(stateFile, json);
+      console.log("store.save:", stateFile, json);
+    } catch (error) {
+      console.log("store.save.error", error);
+    }
+  }
+
+  load() {
+    try {
+      const stateFile = this.getFilePath();
+      const json = fs.readFileSync(stateFile, "utf8");
+      console.log("store.load:", stateFile, json);
+      this.state = JSON.parse(json);
+    } catch (error) {
+      // console.log("store.load.error", error);
+    }
   }
 }
 
