@@ -23,6 +23,10 @@ leagues.forEach(item => {
   $input.setAttribute("name", "leagues");
   $input.setAttribute("type", "radio");
 
+  $input.addEventListener("change", () => {
+    store.set("league", $input.id);
+  });
+
   $div.appendChild($input);
   $div.appendChild($label);
 

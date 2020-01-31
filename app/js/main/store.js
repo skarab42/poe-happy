@@ -24,9 +24,9 @@ const store = new Store({
     license,
     author,
     homepage,
-    language: "en",
     title: `${name} v${version}`
   },
+  language: "en",
   leagues: [],
   league: null
 });

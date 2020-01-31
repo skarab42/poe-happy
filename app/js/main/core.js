@@ -18,10 +18,10 @@ class Core {
     const getLeagues = require("./poe/getLeagues");
     const leagues = await getLeagues();
     this.store.set("leagues", leagues);
-    const firstLeague = leagues[0].id;
     const league = this.store.get("league");
-    if (league === null || !leagues.find(l => l.id === league.id)) {
-      this.store.set("league", firstLeague);
+    if (!leagues.find(l => l.id === league)) {
+      this.store.set("league", leagues[0].id);
+      // TODO: notify league change to user
     }
   }
 
