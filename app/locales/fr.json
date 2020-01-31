@@ -1,9 +1,10 @@
 {
-  "Leagues": "Ligues",
-  "About": "A propos",
-  "Quit": "Quitter",
-  "Version": "Version",
-  "License": "Licence",
-  "Author": "Auteur",
-  "Source": "Source"
+	"Leagues": "Ligues",
+	"About": "A propos",
+	"Quit": "Quitter",
+	"Version": "Version",
+	"License": "Licence",
+	"Author": "Auteur",
+	"Source": "Source",
+	"Item": "Item"
 }

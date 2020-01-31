@@ -28,7 +28,10 @@ const store = new Store({
   },
   language: "en",
   leagues: [],
-  league: null
+  league: null,
+  shortcuts: {
+    showItemInfo: "Control+I"
+  }
 });
 
 module.exports = store;

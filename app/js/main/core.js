@@ -1,3 +1,4 @@
+const { globalShortcut } = require("electron");
 const store = require("./store");
 const i18n = require("./i18n");
 
@@ -25,15 +26,29 @@ class Core {
     }
   }
 
+  showItemInfo() {
+    this.ui.item.showInactive();
+  }
+
+  registerShortcuts() {
+    globalShortcut.unregisterAll();
+    const shortcuts = this.store.get("shortcuts");
+    Object.entries(shortcuts).forEach((item, id) => {
+      globalShortcut.register(item[1], () => this[item[0]]());
+    });
+  }
+
   async init() {
     this.store.load();
     this.updateLanguage();
     await this.updateLeagues();
     this.ui = require("./ui");
+    this.registerShortcuts();
   }
 
   quit() {
     this.store.save();
+    globalShortcut.unregisterAll();
   }
 }
 

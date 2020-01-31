@@ -52,11 +52,16 @@ class Store {
     }
   }
 
-  load() {
+  load(merge = true) {
     try {
       const stateFile = this.getFilePath();
       const json = fs.readFileSync(stateFile, "utf8");
-      this.state = JSON.parse(json);
+      const data = JSON.parse(json);
+      if (merge) {
+        state = { ...state, ...data };
+      } else {
+        state = data;
+      }
     } catch (e) {
       // skip error
     }
