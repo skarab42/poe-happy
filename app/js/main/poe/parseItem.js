@@ -2,7 +2,8 @@ const defaultItem = {
   text: null,
   rarity: null,
   name: null,
-  type: null
+  type: null,
+  baseType: null
 };
 
 function splitItemText(text) {
@@ -22,10 +23,19 @@ function parseItem(text) {
   // - item name
   // - item type
   const block1 = splitItemBlock(blocks[0]);
+  const rarity = block1[0].split(":");
 
-  item.rarity = block1[0];
+  item.rarity = rarity[1].trim();
   item.name = block1[1];
   item.type = block1[2];
+
+  if (!item.type) {
+    const type = item.name.split(" ");
+    item.type = type[0];
+  }
+
+  const baseType = item.type.split(" ");
+  item.baseType = baseType[0].trim();
 
   console.log(item);
 
